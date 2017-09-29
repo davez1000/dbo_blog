@@ -1,0 +1,55 @@
+<?php
+
+/**
+ * @file
+ * Contains dbo_blog.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function dbo_blog_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dbo_blog module.
+    case 'help.page.dbo_blog':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Blog widget') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function dbo_blog_theme($existing, $type, $theme, $path) {
+  return [
+    'dbo_blog' => [
+      'template' => 'dbo_blog',
+      'variables' => [
+        'link' => '',
+        'blog_base_url' => '',
+        't_blog_tag' => '',
+        'blog_search_tag' => '',
+        'heading' => '',
+        'blogs_display' => [],
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view_alter().
+ */
+function dbo_blog_node_view_alter(
+  array &$build,
+  Drupal\Core\Entity\EntityInterface $node,
+  \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display
+) {
+  return \Drupal::service('dbo_blog.node_view_alter')
+    ->nodeViewAlter($build, $node, $display);
+}

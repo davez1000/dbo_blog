@@ -1,0 +1,10 @@
+parameters:
+  dbo_blog.node_view_alter.class: Drupal\dbo_blog\Alter\DboBlogNodeViewAlter
+
+services:
+  dbo_blog.node_view_alter:
+    class: '%dbo_blog.node_view_alter.class%'
+    arguments:
+      - '@entity_type.manager'
+      - '@current_user'
+      - '@dbo_middleware_connect.utilities'

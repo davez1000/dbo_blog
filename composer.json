@@ -1,0 +1,14 @@
+{
+  "name": "drupal/dbo_blog",
+  "type": "drupal-module",
+  "description": "Blog widget",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/dbo_blog",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/dbo_blog",
+    "source": "http://cgit.drupalcode.org/dbo_blog"
+  },
+  "require": { }
+}

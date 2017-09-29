@@ -1,0 +1,47 @@
+<section class="content-widget blog" itemscope itemtype="http://schema.org/Blog">
+    <div class="clearfix">
+
+        {% if heading is not empty %}
+
+                {% if link %}
+
+                    <h2 class="tiles-container-heading"><a href="{{ link }}" rel="external">{{ heading }}</a></h2>
+
+                {% else %}
+
+                    <h2 class="tiles-container-heading">{{ heading }}</h2>
+
+                {% endif %}
+
+        {% endif %}
+
+        <a class="blog__more btn btn-default" href="{{ blog_base_url }}/tag/{{ blog_search_tag }}/"
+           rel="external"><span class="fa fa-tag"></span> {{ t_blog_tag }}</a>
+    </div>
+
+    <div class="blog__container">
+
+        {% for post in blogs_display %}
+
+            <article itemscope itemtype="http://schema.org/BlogPosting">
+                <a href="{{ post.link }}" itemprop="url" rel="external" title="{{ post.title }}">
+                    <img src="{{ post.featured_image_url }}" alt="{{ post.featured_image_alt }}" itemprop="image"
+                         class="img-responsive img-unveil img__blog">
+                </a>
+                <div class="post-title">
+                    <a href="{{ post.link }}" itemprop="url" rel="external" itemprop="name"
+                       title="{{ post.title }}">{{ post.title }}
+                        <time class="hidden" datetime="{{ post.pubDate|strtotime|date('Y-m-d H:i:s') }}"
+                              itemprop="datePublished">{{ post.pubDate|strtotime|date('jS F Y') }}</time>
+                        <p class="blog__description"
+                           itemprop="description">{{ post.description|string|replace({'&#160;':' ','&#8217;':'\''})|unicode_truncate(80, TRUE, TRUE) }}</p>
+                    </a>
+
+                </div>
+
+            </article>
+
+        {% endfor %}
+
+    </div>
+</section>

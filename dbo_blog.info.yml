@@ -1,0 +1,7 @@
+name: DBO Blog
+type: module
+description: Blog widget
+core: 8.x
+package: DBO
+dependencies:
+  - dbo_middleware_connect
